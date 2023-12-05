@@ -86,5 +86,3 @@ const start = async () => {
 };
 
 start();
-
-obs_scene_create('My scene')
