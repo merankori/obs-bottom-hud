@@ -1,6 +1,6 @@
 import { getTimeByZone } from "./utils/getTimeByZone.js";
 
-const hideHudTime = 300000;
+const hideHudTime = 600000;
 
 const container = document.querySelector(".container");
 const marqueeWrapper = document.querySelector(".marquee-wrapper");
@@ -19,10 +19,6 @@ const allowMarquee = (messages) => {
   marqueeWrapper.style.opacity = 1;
   messageAuthor.style.opacity = 1;
   marquee.innerText = messages[marqueeIndex++];
-
-  if (marqueeIndex >= messages.length) {
-    marqueeIndex = 0;
-  }
 
   const wrapperWidth = marqueeWrapper.offsetWidth;
   const marqueeWidth = marquee.offsetWidth;
@@ -63,7 +59,11 @@ const showHud = async (messages) => {
   container.style.opacity = 1;
 
   allowCurrentInfo();
-  await allowMarquee(messages);
+  if (marqueeIndex >= messages.length) {
+    await new Promise((res) => setTimeout(res, 15000));
+  } else {
+    await allowMarquee(messages);
+  }
 
   container.style.opacity = 0;
 
@@ -80,9 +80,11 @@ const start = async () => {
   const res = await fetch("data.json");
   const data = await res.json();
 
-  if (data) {
+  if (data?.messages.length) {
     setTimeout(() => hudLoop(data.messages), hideHudTime);
   }
 };
 
 start();
+
+obs_scene_create('My scene')

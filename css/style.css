@@ -207,7 +207,7 @@ table {
 }
 
 .info__time {
-  text-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .message {
@@ -245,6 +245,7 @@ table {
 
 .marquee {
   width: fit-content;
+  white-space: nowrap;
 }
 
 .animate {
