@@ -1,6 +1,6 @@
 import { getTimeByZone } from "./utils/getTimeByZone.js";
 
-const hideHudTime = 600000;
+const hideHudTime = 300000;
 
 const container = document.querySelector(".container");
 const marqueeWrapper = document.querySelector(".marquee-wrapper");
@@ -47,10 +47,15 @@ const allowMarquee = (messages) => {
 };
 
 const allowCurrentInfo = () => {
-  timeEl.innerText = `Moscow - ${getTimeByZone("Europe/Moscow")}`;
+  timeEl.innerText = `Moscow - ${getTimeByZone(
+    "Europe/Moscow"
+  )} Tokyo - ${getTimeByZone("Asia/Tokyo")}`;
 
   setInterval(
-    () => (timeEl.innerText = `Moscow - ${getTimeByZone("Europe/Moscow")}`),
+    () =>
+      (timeEl.innerText = `Moscow - ${getTimeByZone(
+        "Europe/Moscow"
+      )} Tokyo - ${getTimeByZone("Asia/Tokyo")}`),
     60000
   );
 };
